@@ -1,0 +1,39 @@
+
+[[timers]]
+== Timer objects
+
+The application can create and manage timers using the functions and methods described below.
+
+[[timer_new]]
+* _timer_ = *new*(_duration_, _func_) +
+[small]#Creates a new timer object. +
+_duration_: the timer's default timeout (seconds), +
+_func_: the timer's callback (a Lua function). +
+The _func_ callback is executed when the timer expires as *func(timer, exptime)*, where _exptime_
+is the actual expiration time.#
+
+[[timer_free]]
+* _timer_++:++*free*( ) +
+[small]#Deletes _timer_. Also stops it, if it is running.#
+
+[[timer_start]]
+* _exptime_ = _timer_++:++*start*([_exptime_]) +
+[small]#Starts _timer_ so to expire at the <<_system_time, point in time>>
+given by _exptime_ (default:  _exptime_ = _<<now,now>>( )+duration_). +
+Calling this function may change the current <<tnext, _tnext_>> value.#
+
+[[timer_stop]]
+* _timer_++:++*stop*( ) +
+[small]#Stops _timer_. 
+If the timer is not running, this function has no effects and generates no errors.#
+
+[[timer_running]]
+* _boolean_, _exptime_ = _timer_++:++*is_running*( ) +
+[small]#If _timer_ is running, returns _true_, _exptime_. +
+If _timer_ is not running, returns _false_, _math.huge_.#
+
+[[timer_set]]
+* _timer_++:++*set_duration*(_duration_) +
+_timer_++:++*set_callback*(_func_) +
+[small]#Set the timer's default timeout, and its callback (see _<<timer_new, new>>( )_).#
+

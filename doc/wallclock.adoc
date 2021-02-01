@@ -1,0 +1,18 @@
+
+== System time
+
+All timestamps accepted or returned by functions and methods in this module
+refer to the *system time* given by the <<now, now>>(&nbsp;) function described below.
+
+The system time is relative to an unspecified point in the past that depends on the
+underlying function used to retrieve time from the operating system.
+
+[[now]]
+* _timestamp_ = *now*( ) +
+[small]#Returns the current system time, in seconds.#
+
+[[since]]
+* _dt_ = *since*(_timestamp_) +
+[small]#Returns the time elapsed from the point in time given by _timestamp_.#
+
+

@@ -1,0 +1,15 @@
+
+== Main loop
+
+The functions described in this section are to be used in the application's main event loop.
+In particular, the application is expected to repeatedly call the <<trigger, trigger>>( ) function in
+its event loop.
+
+[[trigger]]
+* _tnext_ = *trigger*( ) +
+[small]#Executes the callbacks for all the timers that are expired. +
+The application is expected to call the _trigger( )_ function again no later than at _tnext_ (a <<_system_time, point in time>>, or _math.huge_ if no timers are running).#
+
+[[tnext]]
+* _tnext_ = *tnext*( ) +
+[small]#Returns the current _tnext_ value (see _<<trigger, trigger>>( )_).#

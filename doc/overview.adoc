@@ -1,0 +1,37 @@
+
+== Overview
+
+This module extends Lua with timers.
+
+The application can create multiple <<timers, timer>> objects associating a callback function
+with each, and then start them to expire at a future point in time, and possibly stop them
+before their expiration.
+
+The application is then expected to repeatedly call the <<trigger, trigger>>( ) function in its
+main event loop. This function checks for expired timers and executes their callback.
+
+A simple example is shown below:
+
+[source,lua,indent=1]
+----
+local timers = require("moontimers")
+
+local duration = 2 -- seconds
+local function callback(timer, exptime)
+   print(string.format("timer expired, system time = %f", timers.now()))
+   -- Restart the timer:
+   timer:start(exptime+duration)
+end
+
+-- Create a timer
+local t1 = timers.new(duration, callback)
+
+-- Start it:
+t1:start()
+
+-- Event loop:
+while true do
+   timers.trigger()
+end
+----
+
